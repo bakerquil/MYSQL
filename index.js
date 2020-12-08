@@ -135,12 +135,12 @@ const addEmployee = () => {
         name: "role",
         type: "list",
         message: "What is the role",
-        choices: selectRole(),
+        choices: selectRole()
       },
     ])
     .then(function (val) {
-      var roleId = selectRole().indexOF(val.role) + 1;
-      connection.query("INSERT INTO employee SET ?"),
+      var roleId = selectRole().indexOf(val.role) + 1;
+      connection.query("INSERT INTO employee SET ?",
         {
           first_name: val.first,
           last_name: val.lastName,
@@ -150,7 +150,7 @@ const addEmployee = () => {
           if (err) throw err;
           console.table(val);
           initPrompt();
-        };
+        });
     });
 };
 
@@ -218,4 +218,5 @@ const selectRole = () =>{
             roleArr.push(res[i].title);
         }
     })
+    return roleArr;
 }
